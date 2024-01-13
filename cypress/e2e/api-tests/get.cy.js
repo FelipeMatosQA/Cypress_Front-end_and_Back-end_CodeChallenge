@@ -1,18 +1,18 @@
 import { expect } from "chai"
-import requests from "../API/src/requests"
-import responses from "../API/src/responses"
+import requests from "../../API/src/requests"
+import responses from "../../API/src/responses"
 import {faker} from "@faker-js/faker"
-import autorizationBody from "../fixtures/autorizationBody.json"
+import autorizationBody from "../../fixtures/autorizationBody.json"
 
 describe("GET",()=>{
 
-    it("List all registers",()=>{
+    it("Listar todos os registros",()=>{
 
         requests.getRequest().then((response)=>{
             responses.validateGetAllRegistersResponse(response)
         })
     })
-    it.only("Register a specific register and validate the values with a GET request",()=>{
+    it("Registrar um usuário e validar se o método GET está exibindo os valores corretamente.",()=>{
         
         const email = faker.internet.email()
         const name = faker.person.firstName()
@@ -34,7 +34,9 @@ describe("GET",()=>{
                 const id = postResponse.body._id
                 
                 requests.getSpecificRegisterRequest(id).then((getResponse)=>{
-                    responses.validateGetResponseWithAPostRequest(postBody,getResponse)
+                    responses.validateGetResponseWithPayload(postBody,getResponse)
+
+                    //Incluir delete
                 })
         })
         })

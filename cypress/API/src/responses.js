@@ -47,16 +47,23 @@ export default{
             });
     },
 
-    validateGetResponseWithAPostRequest(postBody,getResponse){
+    validateGetResponseWithPayload(payload,getResponse){
         expect(getResponse.status)
             .equal(200)
         expect(getResponse.body.nome)
-            .equal(postBody.nome)
+            .equal(payload.nome)
         expect(getResponse.body.email)
-            .equal(postBody.email)
+            .equal(payload.email)
         expect(getResponse.body.password)
-            .equal(postBody.password)
+            .equal(payload.password)
         expect(getResponse.body.administrador)
-            .equal(postBody.administrador)
+            .equal(payload.administrador)
+    },
+
+    validatePutResponse(putResponse){
+        expect(putResponse.status)
+            .equal(200)
+        expect(putResponse.body.message)
+            .equal("Registro alterado com sucesso")
     }
 }

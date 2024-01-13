@@ -43,7 +43,7 @@ export default {
     putRequest(body,id){
         return cy.request({
                     method: "PUT",
-                    url: `objects/${id}`,
+                    url: `https://serverest.dev/usuarios/${id}`,
                     body: body
             }).then((response)=> {return response})
     },
@@ -66,7 +66,7 @@ export default {
     deleteRequest(id){
         return cy.request({
                 method: "DELETE",
-                url: `/objects/${id}`
+                url: `https://serverest.dev/usuarios/${id}`
             }).then((response)=> {return response})
     }
 }
