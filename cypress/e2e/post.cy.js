@@ -1,39 +1,31 @@
 import requests from "../API/src/requests"
+import responses from "../API/src/responses"
 import autorizationBody from "../fixtures/autorizationBody.json"
 import {faker} from "@faker-js/faker"
 
 
 describe("POST",()=>{
 
-    it("autorization",()=>{
+    it.only("Post Request with Auth",()=>{
 
         const email = faker.internet.email()
+        const name = faker.person.firstName()
+        const password = faker.internet.password()
         const postBody = {
-            "nome": "yyyy",
-             "email": "aaaattt@aaadgtt.com",
-            "password": "teste",
+            "nome": name,
+             "email": email,
+            "password": password,
             "administrador": "false"
         }
 
-        requests.autorizationRequestTest(autorizationBody).then((responseAuth)=>{
-            expect(responseAuth.status)
-                .equal(200)
-            expect(responseAuth.body.message)
-                .equal("Login realizado com sucesso")
-            expect(responseAuth.body.authorization).not.empty
-
-            let token = responseAuth.body.authorization
+        requests.autorizationRequest(autorizationBody).then((responseAuth)=>{
+            
+            let token = responses.validateAuth(responseAuth)
             
             requests.postRequest(postBody,token).then((response)=>{
-                expect(response.status)
-                    .equal(201)
-                console.log(response)
-                expect(response.body.message)
-                    .equal("Cadastro realizado com sucesso")
-                expect(response.body._id).not.empty 
+                responses.validatePostResponse(response)
         })
         })
     })
-
     
 })

@@ -55,6 +55,13 @@ export default {
                     failOnStatusCode:false
             }).then((response)=> {return response})
     },
+    getSpecificRegisterRequest(id){
+        return cy.request({
+                    method: "GET",
+                    url: `https://serverest.dev/usuarios/${id}`,
+                    failOnStatusCode:false
+            }).then((response)=> {return response})
+    },
     
     deleteRequest(id){
         return cy.request({
