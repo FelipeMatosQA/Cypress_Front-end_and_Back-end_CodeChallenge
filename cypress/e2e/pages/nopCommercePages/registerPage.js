@@ -47,7 +47,16 @@ export default{
     registerButton(){
         return basePage.findElement("#register-button")
     },
+    passwordErrorMessage(){
+        return basePage.findElement(".field-validation-error #Password-error")
+    },
+    passwordConfirmErrorMessage(){
+        return basePage.findElement(".field-validation-error #ConfirmPassword-error")
+    },
 
+    errorMessage(){
+        return basePage.findElement(".field-validation-error")
+    },
 
     //Actions 
 
@@ -75,7 +84,6 @@ export default{
     },
     clickBtnRegister(){
         this.registerButton().click()
-        basePage.validateCurrentUrl("https://demo.nopcommerce.com/registerresult/1")
     },
 
     
@@ -92,7 +100,20 @@ export default{
     checkRadio(value){
         basePage.findElement(`input[type="radio"][value="${value}"]`).check()
         basePage.findElement(`input[type="radio"][value="${value}"]`).should("be.checked")
+    },
+
+    validateRequiredFieldMessage(message){
+        this.errorMessage().should("have.text",message)
+    },
+    
+    validateRequiredPasswordMessage(){
+        this.passwordErrorMessage().should("be.visible").should("have.text","Password is required.")
+    },
+
+    validateRequiredConfirmPasswordMessage(){
+        this.passwordConfirmErrorMessage().should("be.visible").should("have.text","Password is required.")
     }
+
 
 
 }

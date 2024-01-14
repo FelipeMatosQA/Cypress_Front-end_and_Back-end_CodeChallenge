@@ -10,6 +10,7 @@ export default{
 
     //actions
     validateSucessfullRegister(){
+        basePage.validateCurrentUrl("https://demo.nopcommerce.com/registerresult/1")
         this.registerMessage().should("be.visible").should("have.text","Your registration completed")
     }
 }
