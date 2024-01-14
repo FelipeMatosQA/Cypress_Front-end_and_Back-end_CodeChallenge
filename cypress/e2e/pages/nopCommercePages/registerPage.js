@@ -107,11 +107,15 @@ export default{
     },
     
     validateRequiredPasswordMessage(){
-        this.passwordErrorMessage().should("be.visible").should("have.text","Password is required.")
+        this.passwordErrorMessage()
+            .should("be.visible")
+            .should("have.text","Password is required.")
     },
 
     validateRequiredConfirmPasswordMessage(){
-        this.passwordConfirmErrorMessage().should("be.visible").should("have.text","Password is required.")
+        this.passwordConfirmErrorMessage()
+            .should("be.visible")
+            .should("have.text","Password is required.")
     }
 
 
