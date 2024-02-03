@@ -1,3 +1,4 @@
+import { base } from "@faker-js/faker"
 import basePage from "../basePage"
 
 export default {
@@ -54,10 +55,20 @@ export default {
         return basePage.findElement("#booking")
     },
 
+    cardHotelName(){
+        return basePage.findElement(".card-title.fw-bold")
+    },
+    cardLocationOfHotel(){
+        return basePage.findElement("p.card-meta")
+    },
+    cardSubTotalPrice(){
+        return basePage.findElement("div.card-body ul.list-items.list-items-2.pt-3 li")
+    },
+
     //actions
 
     validatePersonalInformation(fisrtName,lastName,email,phone){
-        this.personalInformationFirstName().should("have.value",fisrtName+" ")
+        this.personalInformationFirstName().should("have.value",fisrtName)
         this.personalInformationLastName().should("have.value",lastName)
         this.personalInformationEmail().should("have.value",email)
         this.personalInformationPhone().should("have.value",phone)
@@ -82,22 +93,25 @@ export default {
     },
 
     agreeTermsAndConditions(){
-        //this.agreeTermsAndConditions().check({force:true})
         basePage.findElement("#agreechb").check({force:true})
     },
 
     clickBookingConfirmBtn(){
         this.bookingButton().click({force:true})
-    }
-
-
-
-
-
+    },
 
     
+    getCardNameValue(){
+        return this.cardHotelName().invoke('text')
+    },
+    getCardHotelLocation(){
+        return this.cardLocationOfHotel().invoke('text')
+    },
 
-
+    getCardSubTotalPrice(){
+        this.cardSubTotalPrice().scrollIntoView({ behavior: 'smooth' })
+        return this.cardSubTotalPrice().invoke('text')
+    }
 
 
 }

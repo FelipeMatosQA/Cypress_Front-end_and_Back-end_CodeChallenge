@@ -1,0 +1,30 @@
+name: Regression Tests
+
+on: 
+  push:
+    branches: [pipeline-branch]
+
+jobs:
+
+  cypress-run:
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout/Clone project
+          uses: actions/checkout@v4
+
+        - name: Install dependencys
+          run: npm install
+
+        - name: Cypress run
+          uses: cypress-io/github-action@v6
+
+        - name: Report
+          if: ${{always()}}
+          uses: actions/upload-artifact@v3
+          with:
+            name: Mocha Report
+            path: cypress/reports/html
+            
+      

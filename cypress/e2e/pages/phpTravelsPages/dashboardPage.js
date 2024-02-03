@@ -21,7 +21,6 @@ export default{
     validateLogin(userName){
         this.userContentCard()
             .should("contain",userName,{timeout: 15000 })
-            //.should("be.visible",{ timeout: 15000 })
             
         this.logoutLink()
             .should("be.visible")
