@@ -1,0 +1,48 @@
+name: Regression Tests
+
+on: 
+  push:
+    branches: [pipeline-branch]
+
+jobs:
+
+  cypress-run:
+
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout/Clone project
+          uses: actions/checkout@v4
+
+        - name: Install dependencys
+          run: npm install
+
+        - name: Cypress run
+          uses: cypress-io/github-action@v6
+
+        - name: Report
+          if: ${{always()}}
+          uses: actions/upload-artifact@v3
+          with:
+            name: Mocha Report
+            path: cypress/reports/html
+            
+        - name: Slack Notification - Success
+          if: ${{success()}}
+          uses: rtCamp/action-slack-notify@v2
+          env:
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            SLACK_MESSAGE: 'Success on PR executions tests :white_check_mark:'
+            SLACK_TITLE: 'Success on PR executions tests :white_check_mark:'
+            SLACK_USERNAME: SUCCESS
+
+        - name: Slack Notification - Failure
+          if: ${{failure()}}
+          uses: rtCamp/action-slack-notify@v2
+          env:
+            SLACK_COLOR: ${{ job.status }}
+            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+            SLACK_MESSAGE: 'Failure on PR executions tests :fire:'
+            SLACK_TITLE: 'Failure on PR executions tests :fire:'
+            SLACK_USERNAME: SUCCESS

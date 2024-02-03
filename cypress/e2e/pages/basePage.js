@@ -1,13 +1,16 @@
 export default {
 
     findElement(Id) {
-        return cy.get(Id)
+        return cy.get(Id,{timeout:20000})
     },
 
     findElementWithWait(element,wait) {
         return cy.get(element, { timeout: wait })
     },
-
+    
+    findELementByXpath(element){
+        return cy.xpath(element)
+    },
 
     findElementByClassAndContent(classtype, content) {
         return this.findElement(`${classtype}`).contains(`${content}`)
