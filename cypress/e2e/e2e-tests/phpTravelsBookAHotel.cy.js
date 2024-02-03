@@ -134,9 +134,5 @@ describe.skip("Reserva de Hotel",()=>{
             expect(name).equals(cardname[0])
         })
 
-        
-
-
-
     })
 })

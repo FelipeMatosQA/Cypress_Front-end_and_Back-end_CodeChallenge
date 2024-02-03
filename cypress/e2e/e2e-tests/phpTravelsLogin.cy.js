@@ -14,9 +14,6 @@ describe.skip("teste de login",()=>{
 
     it("Login com sucesso",()=>{
 
-        //cy.visit("https://phptravels.net/")
-
-        //homePage.navigateToLoginPage()
         loginPage.performLogin(credentials.email,credentials.password)
         dashboardPage.validateLogin(credentials.fullName)
     })
