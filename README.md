@@ -27,9 +27,13 @@ npx cypress open
 npx cypress run
 ```
 
-# Report Artifact
+# Report Artifact and Pipeline Execution
 
-In the image below, you can see the report layout, that has passed all tests.
+Was configured an execution pipeline using GitHub Actions, to access the WorkFlow of the executions, you have to navigate to the session "Actions" of this repository, or click this link "https://github.com/FelipeMatosQA/Cypress_Front-end_and_Back-end_CodeChallenge/actions".
+
+After each pipeline execution, the artifact(report) will be attached to the workflow.
+
+In the image below, you can see the report artifact layout, that has passed all tests.
 
 ![Captura de tela 2024-02-03 191839](https://github.com/FelipeMatosQA/Cypress_Front-end_and_Back-end_CodeChallenge/assets/121990373/d4dda023-0d7a-47df-a363-5f774f9e9fff)
 
