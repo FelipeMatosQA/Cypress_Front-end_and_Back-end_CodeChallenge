@@ -27,22 +27,4 @@ jobs:
             name: Mocha Report
             path: cypress/reports/html
             
-        - name: Slack Notification - Success
-          if: ${{success()}}
-          uses: rtCamp/action-slack-notify@v2
-          env:
-            SLACK_COLOR: ${{ job.status }}
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_MESSAGE: 'Success on PR executions tests :white_check_mark:'
-            SLACK_TITLE: 'Success on PR executions tests :white_check_mark:'
-            SLACK_USERNAME: SUCCESS
-
-        - name: Slack Notification - Failure
-          if: ${{failure()}}
-          uses: rtCamp/action-slack-notify@v2
-          env:
-            SLACK_COLOR: ${{ job.status }}
-            SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-            SLACK_MESSAGE: 'Failure on PR executions tests :fire:'
-            SLACK_TITLE: 'Failure on PR executions tests :fire:'
-            SLACK_USERNAME: SUCCESS
+      
